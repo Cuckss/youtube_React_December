@@ -1,0 +1,89 @@
+@import "../../base.scss";
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:1.5rem 3rem;
+    background-color: $black-primary;
+    height:10vh;
+    width:100%;
+    position: fixed;
+    z-index: 1000;
+    top:0;
+    &__menu{
+        display:none;
+    }
+    &__logo{
+         width:30px;
+         height:70px;
+        object-fit:contain;
+        display:block;
+    }
+    form{
+        flex:0.5;
+        display:flex;
+        padding:0.1rem;
+        margin:0.1rem;
+        border-radius:3px;
+        border:1.2 px solid;
+        background-color: $black-secondary;
+
+        input{
+            width:100%;
+            border:none;
+            background: transparent;
+            font-weight: 500;
+            color:$text-color;
+            &:focus{
+                outline: none;
+            }
+            
+        }
+        button{
+            padding:0 1.25rem;
+            color:$text-color;
+            background-color: transparent;
+            border: none;
+            &:focus{
+                border:none;
+            }
+        }
+        
+    }
+    &__icons{
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        flex:0.15;
+
+        img{
+           border-radius: 50%;
+           width: 40px; 
+           object-fit:contain;
+           margin-left: 5px;
+        }
+    }
+
+
+}
+@media(max-width: $breakpoint-small){
+    .header{
+        padding:1rem;
+
+        form{
+            flex:1;
+        }
+        &__menu{
+            display:block;
+        }
+        &__logo{
+            display:none;
+        }
+        &__icons >*:not(img){
+            display:none;
+        }
+    }
+
+}
+
