@@ -9,16 +9,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const HomeScreen=()=>{
     const dispatch=useDispatch();
     const{isVideosLoading,data}=useSelector((state)=>state.popularVideos);
-    console.log("isVideo loadin????",isVideosLoading,data)
+    // console.log("isVideo loadin????",isVideosLoading,data)
     const{isLoading,categoryVideos}=useSelector((state)=>state.videoByCategory)
-    console.log("categoryvideos are:",isLoading,categoryVideos)
+   // console.log("categoryvideos are:",isLoading,categoryVideos)
     
     useEffect(()=>{
 console.log("content ki baarish.......")
          dispatch(getPopularvideos())
     },[dispatch])
    const fetchData=()=>{
-    console.log("firse content ki baarsidh......",data)
+  //  console.log("firse content ki baarsidh......",data)
     dispatch(getPopularvideos())
     
    }

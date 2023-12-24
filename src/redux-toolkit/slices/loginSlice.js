@@ -15,6 +15,7 @@ const loginSlice=createSlice({
         builder.addCase(loginUserWithGoogle.fulfilled,(state)=>{
             state.success=true;
             state.isLoading=false;
+           
         })
         builder.addCase(loginUserWithGoogle.rejected,(state,action)=>{
             state.isLoading=false;

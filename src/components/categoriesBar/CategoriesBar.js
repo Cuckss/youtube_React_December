@@ -3,8 +3,7 @@ import "./_categoriesBar.scss"
 import { useSelector,useDispatch } from "react-redux";
 import { getPopularvideos, getVideosByCategory } from "../../redux-toolkit/actions/videos.action";
 const CategoriesBar=()=>{
-
-    const keywords=[
+ const keywords=[
         "All",
         "React.js",
         "Native.js",

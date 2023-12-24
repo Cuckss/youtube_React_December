@@ -4,11 +4,15 @@ import { FaEye } from "react-icons/fa";
 import moment from "moment";
 import numeral from "numeral";
 import request from "../../api";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useNavigate } from "react-router-dom";
+
 const Videos=({video})=>{
    const[views,setViews]=useState("");
    const[duration,setDuration]=useState("");
    const[channelIcon,setChannelIcon]=useState("");
-
+   const navigate=useNavigate();
+  
  const _videoId=video.id?.videoId || video.id;
   useEffect(()=>{
       const getVideoDetails=async()=>{
@@ -32,6 +36,7 @@ const Videos=({video})=>{
       }
       getVideoDetails();
   },[_videoId])
+
   useEffect(()=>{
     const getChannelIcons=async()=>{
         const items=await request("/channels",{
@@ -45,11 +50,16 @@ const Videos=({video})=>{
     }
     getChannelIcons()
   },[video.snippet.channelId])
+
+  function handleVideoPlay(){
+    navigate(`/watch/${_videoId}`)
+  }
     return(
-        <div className="video">
+        <div className="video" onClick={handleVideoPlay}>
         <div className="video__top">
-            <img src={video.snippet.thumbnails.high.url} alt="thumbnail image"/>
-            <span>{duration}</span>
+            {/* <img src={video.snippet.thumbnails.high.url} alt="thumbnail image"/> */}
+            <LazyLoadImage src={video.snippet.thumbnails.high.url} effect="blur"/>
+            <span className="video__top__duration">{duration}</span>
             </div>    
         <div className="video__title">
             {video.snippet.title}
@@ -63,7 +73,8 @@ const Videos=({video})=>{
             </span>
             </div>    
         <div className="video__channel">
-            <img src={channelIcon} alt="channel image"/>
+            {/* <img src={channelIcon} alt="channel image"/> */}
+            <LazyLoadImage src={channelIcon} effect="blur"/>
             <p>{video.snippet.channelTitle}</p>
             </div>    
         </div>

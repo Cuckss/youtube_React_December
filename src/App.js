@@ -13,6 +13,7 @@ import { YoutubeApiKeyContext } from "./YoutubeApiKeyContext";
 import { useSelector,useDispatch } from "react-redux";
 //import { getPopularVideos } from "./redux-toolkit/actions/videos.action";
 import { getPopularvideos } from "./redux-toolkit/actions/videos.action";
+import WatchScreen from "./pages/watchScreen/WatchScreen";
 function App() {
     //  console.log("your api key is ---->",process.env.REACT_APP_YOUTUBE_API_KEY)
        const dispatch=useDispatch();
@@ -53,9 +54,9 @@ function App() {
          <Route path="/login" element={<LoginScreen/>}/>
          <Route path="/" element={<Layout/>}>
              <Route path="" element={<ProtectedHomeScreen/>}/>
-            
+             <Route path="/watch/:id" element={<WatchScreen/>}/>
          </Route>
-    
+          
    </Routes>
     
     

@@ -10,11 +10,12 @@ const LoginScreen=()=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const{isLoading,success}=useSelector((state)=>state.loginUser)
-    console.log(isLoading)
+    console.log("the user data is ",isLoading,success)
+    //console.log(isLoading)
     useEffect(()=>{
       if(user){
         navigate("/")
-        console.log(user);
+       // console.log(user);
       }
     },[user])
     function login(){

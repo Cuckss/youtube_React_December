@@ -7,7 +7,7 @@ export const getPopularvideos=createAsyncThunk("popular/videos",async(_,thunkAPI
     // const { nextPageToken } = thunkAPI.getState().popularVideos.data;
     
     try{
-        const nextPageToken = thunkAPI.getState().popularVideos.nextPageToken ?? null;
+        const nextPageToken = thunkAPI.getState().popularVideos.data.nextPageToken ?? null;
         console.log("popularvideos page token is : ",nextPageToken) 
        const res=await request('/videos',{
            params:{
@@ -19,8 +19,8 @@ export const getPopularvideos=createAsyncThunk("popular/videos",async(_,thunkAPI
            }
        })
        
-       console.log(res)
-       console.log("video.js se content ki baarish")
+     //  console.log(res)
+       //console.log("video.js se content ki baarish")
        return{
          result:res.data.items,
          nextPageToken:res.data.nextPageToken,
@@ -55,6 +55,23 @@ export const getVideosByCategory=createAsyncThunk("byCategory/videos",async(keyw
        return res.data.items;
     // return res.data.items;
     }catch(error){
+        thunkAPI.rejectWithValue(error.message)
+    }
+})
+
+export const getVideoById=createAsyncThunk("byId/video",async(id,thunkAPI)=>{
+    try{
+        const res=await request('/videos',{
+            params:{
+                part:"snippet,statistics",
+                id:id,
+            }
+        })
+        console.log("the video by id is:--->",res.data.items[0]);
+        return res.data.items[0];
+    }
+    catch(error){
+        console.log(error)
         thunkAPI.rejectWithValue(error.message)
     }
 })
